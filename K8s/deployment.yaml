@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uber-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: uber
+  template:
+    metadata:
+      labels:
+        app: uber
+    spec:
+      containers:
+      - name: uber
+        image: teodor1006/uber:latest
+        ports:
+        - containerPort: 3000
