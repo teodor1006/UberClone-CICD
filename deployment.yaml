@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: uber
-        image: teodor1006/uber:latest
+        image: "865893227318.dkr.ecr.us-east-1.amazonaws.com/uberapp"
         ports:
         - containerPort: 3000
