@@ -71,13 +71,12 @@ pipeline {
             }
         }
 
-        stage('Deploy App on EKS Cluster') {
-            steps {
-                withAWS(credentials: 'awscreds', region: 'us-east-1') {
-                    script {
-                        sh "aws eks update-kubeconfig --name uberclone-cluster --region us-east-1"
-                        sh "kubectl apply -f deployment.yaml"
-                        sh "kubectl apply -f service.yaml"
+        stage('Deploy to EKS'){
+            steps{
+                script{
+                        withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                                sh 'kubectl apply -f deployment.yml'
+                                sh 'kubectl apply -f service.yml'
                     }
                 }
             }
