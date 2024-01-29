@@ -78,7 +78,6 @@ pipeline {
                         sh "aws eks update-kubeconfig --name uberclone-cluster --region us-east-1"
                         sh "kubectl apply -f deployment.yaml"
                         sh "kubectl apply -f service.yaml"
-                      }
                     }
                 }
             }
@@ -95,4 +94,6 @@ pipeline {
         }
     }
 }
+
+
 
