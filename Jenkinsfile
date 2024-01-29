@@ -60,7 +60,7 @@ pipeline {
             steps {
                 script {
                     dockerImage = docker.build("${appRegistry}:${BUILD_NUMBER}", "./")
-                    docker.withRegistry(uberREGISTRY, registryCredential) {
+                    docker.withRegistry(uberRegistry, registryCredential) {
                         dockerImage.push("${BUILD_NUMBER}")
                         dockerImage.push('latest')
                     }
@@ -70,7 +70,7 @@ pipeline {
 
         stage('Container Security Scan') {
             steps {
-                sh "trivy image ${appREGISTRY}:${BUILD_NUMBER} > trivy_image.txt"
+                sh "trivy image ${appRegistry}:${BUILD_NUMBER} > trivy_image.txt"
             }
         }
 
