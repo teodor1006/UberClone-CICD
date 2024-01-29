@@ -36,7 +36,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh "npm install"
             }
         }
 
@@ -49,7 +49,7 @@ pipeline {
 
         stage('TRIVY FS SCAN') {
             steps {
-                sh 'trivy fs . > trivyfs.txt'
+                sh "trivy fs . > trivyfs.txt"
             }
         }
 
@@ -76,9 +76,9 @@ pipeline {
                 withAWS(credentials: 'awscreds', region: 'us-east-1') {
                     dir('K8s') {
                         script {
-                            sh 'aws eks update-kubeconfig --name uberclone-cluster --region us-east-1'
-                            sh 'kubectl apply -f deployment.yaml'
-                            sh 'kubectl apply -f service.yaml'
+                            sh "aws eks update-kubeconfig --name uberclone-cluster --region us-east-1"
+                            sh "kubectl apply -f deployment.yaml"
+                            sh "kubectl apply -f service.yaml"
                         }
                     }
                 }
