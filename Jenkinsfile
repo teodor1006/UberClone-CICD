@@ -56,11 +56,11 @@ pipeline {
             }
         }
 
-        stage('Build and Push Docker Image') {
+        stage('Build and Push Docker Image to ECR') {
             steps {
                 script {
-                    dockerImage = docker.build("${APP_REGISTRY}:${BUILD_NUMBER}", "./")
-                    docker.withRegistry(appREGISTRY, registryCredential) {
+                    dockerImage = docker.build("${appRegistry}:${BUILD_NUMBER}", "./")
+                    docker.withRegistry(uberREGISTRY, registryCredential) {
                         dockerImage.push("${BUILD_NUMBER}")
                         dockerImage.push('latest')
                     }
