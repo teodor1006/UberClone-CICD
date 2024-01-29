@@ -1,5 +1,5 @@
 resource "aws_security_group" "jenkins-sg" {
-  name        = "Jenkins Security Group"
+  name = "Jenkins Security Group"
   # 22: SSH, 443: HTTPS, 80: HTTP, 8080: Jenkins, 9000: SonarQube, 3000: App
   description = "Allow access to ports: 22, 443, 80, 8080, 9000, 3000"
 

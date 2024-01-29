@@ -29,7 +29,7 @@ terraform {
   backend "s3" {
     bucket = "uberclone-terrastate" # Give your S3 Bucket a unique name
     key    = "terraform.tfstate"
-    region = "us-east-1" 
+    region = "us-east-1"
   }
 
   required_version = ">= 1.0"

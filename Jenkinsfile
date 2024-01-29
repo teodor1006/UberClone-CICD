@@ -40,14 +40,12 @@ pipeline {
             }
         }
 
-        stage('Dependency Scans') {
-            parallel {
-                stage('OWASP FS SCAN') {
-                    steps {
-                        dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP'
-                        dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-                    }
-                }
+        stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
                 stage('TRIVY FS SCAN') {
                     steps {
                         sh 'trivy fs . > trivyfs.txt'
